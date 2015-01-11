@@ -27,5 +27,31 @@ adsApp.controller('UserAdsController',
             $scope.selectedStatus = status;
             $scope.reloadAds();
         }
+
+        $scope.deactivateAd = function (id) {
+            userService.deactivateAd(
+                id,
+                function success(data) {
+                    notifyService.showInfo("Ad successfully deactivated.");
+                    $scope.reloadAds();
+                },
+                function error(error) {
+                    notifyService.showError("Error:", error);
+                }
+            )
+        }
+
+        $scope.publishAgain = function (id) {
+            userService.publishAgainAd(
+                id,
+                function success(data) {
+                    notifyService.showInfo("Ad successfully published again.");
+                    $scope.reloadAds();
+                },
+                function error(error) {
+                    notifyService.showError("Error:", error);
+                }
+            )
+        }
     }
 );

@@ -26,7 +26,10 @@
             </div>
             <div class="col-md-3">
                 <p><strong>Status:</strong> {{ ad.status }}</p>
-                <div><a class="btn btn-default">Deactivate</a></div>
+                <div>
+                    <a ng-if="ad.status != 'Inactive'" class="btn btn-default" ng-click="deactivateAd(ad.id)">Deactivate</a>
+                    <a ng-if="ad.status == 'Inactive'" class="btn btn-primary" ng-click="publishAgain(ad.id)">Publish Again</a>
+                </div>
             </div>
         </div>
     </div>
