@@ -1,0 +1,64 @@
+<div class="col-sm-2 sidebar" ng-controller="AdsSidebarController">
+    <h3>Towns</h3>
+
+    <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{'active' : selectedTownId == null}"
+            ng-click="townClicked(null)"><a>All</a>
+        </li>
+        <li ng-repeat="town in towns"
+            ng-class="{'active' : selectedTownId == town.id}"
+            ng-click="townClicked(town.id)"><a>{{ town.name }}</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="col-md-8">
+    <h2>All Ads</h2>
+    <pagination total-items="ads.numItems" ng-model="adsParams.startPage"
+                items-per-page="adsParams.pageSize" ng-change="reloadAds()"
+                max-size="9" boundary-links="true">
+    </pagination>
+    <div class="panel panel-primary" ng-repeat="ad in ads.ads">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ ad.title }}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-5 pull-left image-container">
+                <img ng-src="{{ ad.imageDataUrl }}" />
+                <img ng-if="ad.imageDataUrl == null" src="http://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>
+            </div>
+            <div class="col-md-7">
+                <p>
+                    <strong>By:</strong> {{ ad.ownerName }}
+                </p>
+                <p>
+                    <strong>Details:</strong> {{ ad.text }}
+                </p>
+                <p>
+                    <strong>Contacts:</strong>
+
+                <p><strong>Phone:</strong> {{ ad.ownerPhone }}</p>
+                <p><strong>Email:</strong> {{ ad.ownerEmail }}</p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-2 sidebar" ng-controller="AdsSidebarController">
+    <h3>Categories</h3>
+
+    <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{'active' : selectedCategoryId == null}"
+            ng-click="categoryClicked(null)"><a>All</a>
+        </li>
+        <li ng-repeat="category in categories"
+            ng-class="{'active' : selectedCategoryId == category.id}"
+            ng-click="categoryClicked(category.id)"><a>{{ category.name }}</a>
+        </li>
+    </ul>
+</div>
+

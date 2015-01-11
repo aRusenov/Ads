@@ -1,0 +1,45 @@
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">Ads</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+
+            <!-- guest header -->
+            <ul class="nav navbar-nav pull-right" ng-if="authService.isAnonymous()">
+                <li>
+                    <a href="#/login">Login</a>
+                </li>
+                <li>
+                    <a href="#/register">Register</a>
+                </li>
+            </ul>
+
+            <!-- normal user header -->
+            <ul class="nav navbar-nav" ng-if="authService.isLoggedIn()">
+                <li>
+                    <a href="#/">Home</a>
+                </li>
+                <li>
+                    <a href="#/user/ads">My Ads</a>
+                </li>
+                <li>
+                    <a href="#/user/ads/publish">Publish New Ad</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right" ng-if="authService.isLoggedIn()">
+                <li>
+                    <a href="#" class="user-name">{{ authService.getCurrentUser().username }}</a>
+                </li>
+                <li>
+                    <a href="#" ng-click="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
